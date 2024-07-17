@@ -1,0 +1,18 @@
+name: Print User Input
+on:
+  workflow_dispatch:
+    inputs:
+      user_input:
+        description: 'Enter your inputs:'
+        required: true
+jobs:
+  print-input:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print User Input
+      uses: actions/github-script@v5
+      with:
+        user_input: ${{ inputs.user_input }}
+        script: |
+          const input = "${{ github.event.inputs.user_input }}"
+          console.log(input);
